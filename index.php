@@ -42,9 +42,6 @@ $query = mysqli_query($con, $sql);
     <div class="users-form">
         <h1>Crear informacion del computador</h1>
         <form action="insert_user.php" method="POST">
-            <input type="text" name="codigo" for="codigo" placeholder="codigo">
-            <input type="text" name="nombre" for="nombre" placeholder="nombre">
-            <input type="text" name="equipo" for="equipo" placeholder="equipo">
             <input type="text" name="CPU" for="CPU" placeholder="CPU">
             <input type="text" name="SISTEMAOPERATIVO" for="SISTEMAOPERATIVO" placeholder="SISTEMAOPERATIVO">
             <input type="text" name="cache" for="cache" placeholder="cache">
@@ -56,9 +53,9 @@ $query = mysqli_query($con, $sql);
             <input type="date" name="proximo_mantenimiento" for="proximo_mantenimiento"placeholder="proximo_mantenimiento">
             <input type="date" name="año_lanzamiento" for="año_lanzamiento"placeholder="año_lanzamiento">
             <input type="date" name="fecha_compra" for="fecha_compra" placeholder="fecha_compra" >
-            <input type="text" name="V_CPU" for="V_CPU"placeholder="V_CPU">
-            <input type="text" name="V_MEM" for="V_MEM"placeholder="V_MEM">
-            <input type="text" name="V_DISCO" for="V_DISCO"placeholder="V_DISCO">
+            <input type="int" name="V_CPU" for="V_CPU"placeholder="V_CPU">
+            <input type="int" name="V_MEM" for="V_MEM"placeholder="V_MEM">
+            <input type="int" name="V_DISCO" for="V_DISCO"placeholder="V_DISCO">
            
 
             <input type="submit" value="Agregar">
@@ -72,9 +69,6 @@ $query = mysqli_query($con, $sql);
                 <tr>
 
                     <th>Id</th>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>quipo</th>
                     <th>CPU</th>
                     <th>Sistema operativo</th>
                     <th>Cache</th>
@@ -101,15 +95,6 @@ $query = mysqli_query($con, $sql);
 
                         <th>
                             <?= $row['id'] ?>
-                        </th>
-                        <th>
-                            <?= $row['codigo'] ?>
-                        </th>
-                        <th>
-                            <?= $row['nombre'] ?>
-                        </th>
-                        <th>
-                            <?= $row['equipo'] ?>
                         </th>
                         <th>
                             <?= $row['CPU'] ?>

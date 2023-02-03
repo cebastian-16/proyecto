@@ -3,7 +3,7 @@ include("connection.php");
 $con = connection();
 
 $id =$_POST['id'];
-$equipo = $_POST['equipo'];
+
 $SISTEMAOPERATIVO = $_POST['SISTEMAOPERATIVO'];
 $CPU = $_POST['CPU'];
 $cache = $_POST['cache'];
@@ -26,7 +26,7 @@ $promedio=$V_CPU + $V_MEM + $V_DISCO;
 $V_FINAL = $promedio / 3;
 
 
-$sql="UPDATE datos SET equipo='$equipo',SISTEMAOPERATIVO='$SISTEMAOPERATIVO',CPU='$CPU',cache='$cache',memoria='$memoria',almacenamiento='$almacenamiento',direccion='$direccion',mac='$mac',ultimo_mantenimiento='$ultimo_mantenimiento',proximo_mantenimiento='$proximo_mantenimiento', año_lanzamiento='$año_lanzamiento' ,fecha_compra='$fecha_compra',V_CPU='$V_CPU', V_MEM='$V_MEM' ,V_DISCO='$V_DISCO', V_FINAL='$V_FINAL'  WHERE id='$id'";
+$sql="UPDATE datos SET SISTEMAOPERATIVO='$SISTEMAOPERATIVO',CPU='$CPU',cache='$cache',memoria='$memoria',almacenamiento='$almacenamiento',direccion='$direccion',mac='$mac',ultimo_mantenimiento='$ultimo_mantenimiento',proximo_mantenimiento='$proximo_mantenimiento', año_lanzamiento='$año_lanzamiento' ,fecha_compra='$fecha_compra',V_CPU='$V_CPU', V_MEM='$V_MEM' ,V_DISCO='$V_DISCO', V_FINAL='$V_FINAL'  WHERE id='$id'";
 $query = mysqli_query($con, $sql);
 
 if($query){

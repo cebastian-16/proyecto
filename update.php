@@ -37,7 +37,6 @@ $row = mysqli_fetch_array($query);
         <form action="edit_user.php" method="POST">
 
             <input type="hidden" name="id" value="<?= $row['id'] ?>">
-            <input type="text" name="equipo" placeholder="equipo" value="<?= $row['equipo'] ?>">
             <input type="text" name="CPU" placeholder="CPU" value="<?= $row['CPU'] ?>">
             <input type="text" name="SISTEMAOPERATIVO" placeholder="SISTEMAOPERATIVO"value="<?= $row['SISTEMAOPERATIVO'] ?>">
             <input type="text" name="cache" placeholder="cache" value="<?= $row['cache'] ?>">
