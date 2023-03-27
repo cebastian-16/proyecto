@@ -21,42 +21,6 @@ a{
     text-decoration: none;
 }
 
-.users-table{
-
-    @media (max-width: 767px) {
-        .desktop {
-            display: none;
-        }
-        .tablet {
-            display: none;
-        }
-    }
-    
-    
-    /**Tablet**/
-    
-    @media (min-width: 768px) and (max-width: 990px) {
-        .desktop {
-            display: none;
-        }
-        .movil {
-            display: none;
-        }
-    }
-    
-    
-    /**Escritorio**/
-    
-    @media (min-width: 991px) {
-        .tablet {
-            display: none;
-        }
-        .movil {
-            display: none;
-        }
-    }
-
-}
 
 .users-form form{
     display: flex;
@@ -106,19 +70,19 @@ a{
     color: white;
 }
 
-.users-table table{
-    border: 2px solid  #ccc;
+/* .users-table table{
+    border: 3px solid  #141414;
     border-collapse: collapse;
-    margin: 0;
-    padding: 0;
+    margin: 3;
+    padding: 3;
     width: 100fr;
     table-layout: fixed;
   
-}
+} */
 
-table tr {
+ table tr {
     background-color: #f8f8f8;
-    border: 3px solid #ddd;
+    border: 3px solid  #111010;
     padding: 4px;
 }
 
@@ -126,8 +90,8 @@ table th{
     padding: 16px;
     text-align: center;
     font-size: .85em;
-    border: 3px solid #ddd;
-}
+    border: 3px solid  #0f0f0f;
+} 
 
 .users-table--edit{
     background: #009688;
@@ -144,36 +108,5 @@ table th{
     font-weight: bold;
 }
 
-@media (max-width: 990px) {
-    .desktop {
-        display: none;
-    }
-    .tablet {
-        display: none;
-    }
-}
 
-
-/**Tablet**/
-
-@media (min-width: 768px) and (max-width: 990px) {
-    .desktop {
-        display: none;
-    }
-    .movil {
-        display: none;
-    }
-}
-
-
-/**Escritorio**/
-
-@media (min-width: 991px) {
-    .tablet {
-        display: none;
-    }
-    .movil {
-        display: none;
-    }
-}
 
