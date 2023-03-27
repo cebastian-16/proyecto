@@ -49,111 +49,127 @@ $query = mysqli_query($con, $sql);
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <a href="insert.php">  <h2>Ingresar Caracteristicas</h2></a>
-                    <a href="index1.php">  <h2>Graficas</h2></a>
+                    <a href="insert.php">
+                        <h2>Ingresar Caracteristicas</h2>
+                    </a>
+                    <a href="index1.php">
+                        <h2>Graficas</h2>
+                    </a>
                 </div>
             </div>
 
-            <a href="cerrarsession.php" class="btn btn-outline-primary">
-        <span class="glyphicon glyphicon-off"></span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
-            <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
-        </svg>
-    </a>
+
+            <body>
+                <a href="export.php">
+                    <button type="button" class="btn btn-success" style="margin-top: 0px !important;">Informe
+                        Excel</button>
+                </a>
+
+                <form action="busqueda.php" method="post">
+                    <label for="query" >Buscar:</label>
+                    <input type="text" name="query" id="query">
+                    <input type="submit" value="Buscar">
+                </form>
+                <a href="cerrarsession.php" class="btn btn-outline-primary">
+                    <span class="glyphicon glyphicon-off"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                        <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
+                    </svg>
+                </a>
 
         </div>
 
     </nav>
-    
-    <div class="users-table">
-        <h2>Computadores registrados</h2>
-        <table class="table-bordered">
-            <thead>
+
+
+</body>
+
+<div class="users-table">
+
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <th>CPU</th>
+                <th>Sistema operativo</th>
+                <th>Cache</th>
+                <th>Memoria</th>
+                <th>Almacenamiento</th>
+                <th>Direccion ip</th>
+                <th>Mac</th>
+                <th>Ultimo mantenimiento</th>
+                <th>Proximo mantenimiento</th>
+                <th>año de lanzamiento de la CPU</th>
+                <th>Fecha de compra de la CPU</th>
+                <th>V_CPU</th>
+                <th>V_MEM</th>
+                <th>V_DISCO</th>
+                <th>V_FINAL </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = mysqli_fetch_array($query)) : ?>
                 <tr>
 
 
-                    <th>CPU</th>
-                    <th>Sistema operativo</th>
-                    <th>Cache</th>
-                    <th>Memoria</th>
-                    <th>Almacenamiento</th>
-                    <th>Direccion ip</th>
-                    <th>Mac</th>
-                    <th>Ultimo mantenimiento</th>
-                    <th>Proximo mantenimiento</th>
-                    <th>año de lanzamiento de la CPU</th>
-                    <th>Fecha de compra de la CPU</th>
-                    <th>V_CPU</th>
-                    <th>V_MEM</th>
-                    <th>V_DISCO</th>
-                    <th>V_FINAL </th>
-                    <th></th>
-                    <th></th>
+                    <th>
+                        <?= $row['CPU'] ?>
+                    </th>
+                    <th>
+                        <?= $row['SISTEMAOPERATIVO'] ?>
+                    </th>
+                    <th>
+                        <?= $row['cache'] ?>
+                    </th>
+                    <th>
+                        <?= $row['memoria'] ?>
+                    </th>
+                    <th>
+                        <?= $row['almacenamiento'] ?>
+                    </th>
+                    <th>
+                        <?= $row['direccion'] ?>
+                    </th>
+                    <th>
+                        <?= $row['mac'] ?>
+                    </th>
+                    <th>
+                        <?= $row['ultimo_mantenimiento'] ?>
+                    </th>
+                    <th>
+                        <?= $row['proximo_mantenimiento'] ?>
+                    </th>
+                    <th>
+                        <?= $row['año_lanzamiento'] ?>
+                    </th>
+                    <th>
+                        <?= $row['fecha_compra'] ?>
+
+                    </th>
+                    <th>
+                        <?= $row['V_CPU'] ?>
+                    </th>
+                    <th>
+                        <?= $row['V_MEM'] ?>
+                    </th>
+                    <th>
+                        <?= $row['V_DISCO'] ?>
+                    </th>
+                    <th>
+                        <?= $row['V_FINAL'] ?>
+
+                    </th>
+                    </th>
+                    <th><a href="update.php?id=<?= $row['id'] ?>" class="btn btn-outline-primary">Editar</a></th>
+                    <th><a href="delete_user.php?id=<?= $row['id'] ?>" class="btn btn-outline-danger" onclick='return confirmacion()'>Eliminar</a>
+                    </th>
 
                 </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_array($query)) : ?>
-                    <tr>
-
-
-                        <th>
-                            <?= $row['CPU'] ?>
-                        </th>
-                        <th>
-                            <?= $row['SISTEMAOPERATIVO'] ?>
-                        </th>
-                        <th>
-                            <?= $row['cache'] ?>
-                        </th>
-                        <th>
-                            <?= $row['memoria'] ?>
-                        </th>
-                        <th>
-                            <?= $row['almacenamiento'] ?>
-                        </th>
-                        <th>
-                            <?= $row['direccion'] ?>
-                        </th>
-                        <th>
-                            <?= $row['mac'] ?>
-                        </th>
-                        <th>
-                            <?= $row['ultimo_mantenimiento'] ?>
-                        </th>
-                        <th>
-                            <?= $row['proximo_mantenimiento'] ?>
-                        </th>
-                        <th>
-                            <?= $row['año_lanzamiento'] ?>
-                        </th>
-                        <th>
-                            <?= $row['fecha_compra'] ?>
-
-                        </th>
-                        <th>
-                            <?= $row['V_CPU'] ?>
-                        </th>
-                        <th>
-                            <?= $row['V_MEM'] ?>
-                        </th>
-                        <th>
-                            <?= $row['V_DISCO'] ?>
-                        </th>
-                        <th>
-                            <?= $row['V_FINAL'] ?>
-
-                        </th>
-                        </th>
-                        <th><a href="update.php?id=<?= $row['id'] ?>" class="btn btn-outline-primary">Editar</a></th>
-                        <th><a href="delete_user.php?id=<?= $row['id'] ?>" class="btn btn-outline-danger" onclick='return confirmacion()'>Eliminar</a>
-                        </th>
-
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
 
 
 

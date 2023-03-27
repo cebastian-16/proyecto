@@ -27,6 +27,8 @@
 					</a>
 				</div>
 			</div>
+			<h2>Graficas</h2>
+
 
 			<a href="cerrarsession.php" class="btn btn-outline-primary">
 				<span class="glyphicon glyphicon-off"></span>
@@ -43,7 +45,7 @@
 			<div class="col-sm-12">
 				<div class="panel panel-primary">
 					<div class="panel panel-heading">
-						Graficas con plotly js (facultad autodidacta)
+						
 					</div>
 					<div class="panel panel-body">
 						<div class="row">

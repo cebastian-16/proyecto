@@ -29,6 +29,7 @@ $con = connection();
                     <a href="index.php">  <h2>Inicio</h2></a>
                 </div>
             </div>
+            <h4>Crear informacion del computador</h4>
 
             <a href="cerrarsession.php" class="btn btn-outline-primary">
         <span class="glyphicon glyphicon-off"></span>
@@ -42,7 +43,7 @@ $con = connection();
     </nav>
 
 <div class="users-form">
-        <h4>Crear informacion del computador</h4>
+       
         <form action="insert_user.php" method="POST">
             <input type="text" name="CPU" for="CPU" placeholder="CPU">
             <input type="text" name="SISTEMAOPERATIVO" for="SISTEMAOPERATIVO" placeholder="SISTEMAOPERATIVO">

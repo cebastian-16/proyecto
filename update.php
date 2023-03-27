@@ -50,6 +50,8 @@ $row = mysqli_fetch_array($query);
 					</a>
 				</div>
 			</div>
+            <h2>Modificar Caracteristicas</h2>
+
 
 			<a href="cerrarsession.php" class="btn btn-outline-primary">
 				<span class="glyphicon glyphicon-off"></span>
