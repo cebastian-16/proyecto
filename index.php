@@ -41,7 +41,7 @@ $query = mysqli_query($con, $sql);
 
     <nav class="navbar bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Opciones</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="background-color: #6264DF">Opciones</button>
 
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header">
@@ -60,16 +60,18 @@ $query = mysqli_query($con, $sql);
 
 
             <body>
-                <a href="export.php">
-                    <button type="button" class="btn btn-success" style="margin-top: 0px !important;">Informe
+                <a href="exportar.php">
+                    <button type="button" class="btn btn-success"   style="background-color: #6264DF">Informe
                         Excel</button>
                 </a>
 
                 <form action="busqueda.php" method="post">
-                    <label for="query" >Buscar:</label>
+                    <label for="query">Buscar: </label >
                     <input type="text" name="query" id="query">
-                    <input type="submit" value="Buscar">
+                    <input type="submit" value="Buscar" ></input>
+                    
                 </form>
+   
                 <a href="cerrarsession.php" class="btn btn-outline-primary">
                     <span class="glyphicon glyphicon-off"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">

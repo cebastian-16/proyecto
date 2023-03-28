@@ -1,39 +1,36 @@
 <?php
 include("connection.php");
+$con = connection();
 
+$sql = "SELECT * FROM datos ";
+			
+	    	$Result = mysqli_query( $con, $sql );
 
+	    	$productResult = array();
 
-function exportCaracDatabase($con)
-{
-    
-    $sql = "SELECT * FROM `datos` ";
+			while( $rows = mysqli_fetch_assoc($Result) ) {
+				$productResult[] = $rows;
+			}
 
-    $productResult = array();
+			$filename = "caracteristicas.xls";
 
-    while ($rows = mysqli_fetch_assoc($con)) {
-        $productResult[] = $rows;
-    }
+			header("Content-Type: application/vnd.ms-excel");
 
-    $filename = "caracteristicas.xls";
+			header("Content-Disposition: attachment; filename=".$filename);
 
-    header("Content-Type: application/vnd.ms-excel");
+			$mostrar_columnas = false;
 
-    header("Content-Disposition: attachment; filename=" . $filename);
+			foreach($productResult as $libro) {
 
-    $mostrar_columnas = false;
+				if(!$mostrar_columnas) {
 
-    foreach ($productResult as $libro) {
+					echo implode("\t", array_keys($libro)) . "\n";
 
-        if (!$mostrar_columnas) {
+					$mostrar_columnas = true;
 
-            echo implode("\t", array_keys($libro)) . "\n";
+				}
 
-            $mostrar_columnas = true;
-        }
-
-        echo implode("\t", array_values($libro)) . "\n";
-    }
-}
-
+				echo implode("\t", array_values($libro)) . "\n";
+            }
 
 ?>
