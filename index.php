@@ -3,7 +3,7 @@ include("connection.php");
 $con = connection();
 
 
-$sql = "SELECT * FROM datos LIMIT 10";
+$sql = "SELECT * FROM datos ";
 $query = mysqli_query($con, $sql);
 
 
