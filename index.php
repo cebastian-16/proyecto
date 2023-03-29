@@ -3,7 +3,7 @@ include("connection.php");
 $con = connection();
 
 
-$sql = "SELECT * FROM datos ";
+$sql = "SELECT * FROM datos LIMIT 4";
 $query = mysqli_query($con, $sql);
 
 
@@ -91,8 +91,8 @@ $query = mysqli_query($con, $sql);
     <table class="table-bordered">
         <thead>
             <tr>
-                <th>CPU</th>
                 <th>Sistema operativo</th>
+                <th>CPU</th>
                 <th>Cache</th>
                 <th>Memoria</th>
                 <th>Almacenamiento</th>
@@ -100,8 +100,6 @@ $query = mysqli_query($con, $sql);
                 <th>Mac</th>
                 <th>Ultimo mantenimiento</th>
                 <th>Proximo mantenimiento</th>
-                <th>año de lanzamiento de la CPU</th>
-                <th>Fecha de compra de la CPU</th>
                 <th>V_CPU</th>
                 <th>V_MEM</th>
                 <th>V_DISCO</th>
@@ -116,10 +114,10 @@ $query = mysqli_query($con, $sql);
 
 
                     <th>
-                        <?= $row['CPU'] ?>
+                        <?= $row['SISTEMAOPERATIVO'] ?>
                     </th>
                     <th>
-                        <?= $row['SISTEMAOPERATIVO'] ?>
+                        <?= $row['CPU'] ?>
                     </th>
                     <th>
                         <?= $row['cache'] ?>
@@ -141,13 +139,6 @@ $query = mysqli_query($con, $sql);
                     </th>
                     <th>
                         <?= $row['proximo_mantenimiento'] ?>
-                    </th>
-                    <th>
-                        <?= $row['año_lanzamiento'] ?>
-                    </th>
-                    <th>
-                        <?= $row['fecha_compra'] ?>
-
                     </th>
                     <th>
                         <?= $row['V_CPU'] ?>

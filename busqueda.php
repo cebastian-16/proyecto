@@ -13,7 +13,7 @@ if ($mysqli->connect_error) {
 $query = isset($_POST['query']) ? $_POST['query'] : '';
 
 // Preparar la consulta SQL
-$sql = "SELECT * FROM datos WHERE id LIKE '%$query%' OR SISTEMAOPERATIVO LIKE '%$query%'";
+$sql = "SELECT * FROM datos WHERE id LIKE '%$query%' ";
 
 // Ejecutar la consulta SQL
 $resultado = $mysqli->query($sql);
@@ -21,12 +21,26 @@ $resultado = $mysqli->query($sql);
 // Mostrar los resultados
 if ($resultado->num_rows > 0) {
     while ($filas = $resultado->fetch_assoc()) {
-        // echo '<p><strong>' . $fila['id'] . '</strong>: ' . $fila['SISTEMAOPERATIVO'] . '</p>';
+        echo "<div class='offcanvas-body'><a href='index.php'><h2>Inicio</h2></a></div>";
         $fila = "<table style='border-collapse: collapse'>";
         $fila .= "<thead  style='background-color: #f2f2f2'>";
         $fila .= "<tr>";
-        $fila .= "<th style='padding: 10px; border: 1px solid black'>id</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>id </th>";
         $fila .= "<th style='padding: 10px; border: 1px solid black'>SISTEMAOPERATIVO</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>CPU</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>cache</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>memoria</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>almacenamiento</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>direccion</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>mac</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>ultimo_mantenimiento</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>proximo_mantenimiento</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>año_lanzamiento</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>fecha_compra</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>V_CPU</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>V_MEM</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>V_DISCO</th>";
+        $fila .= "<th style='padding: 10px; border: 1px solid black'>V_FINAL</th>";
         $fila .= "</tr>";
         $fila .= "</thead>";
         $fila .= "<tbody>";
@@ -34,6 +48,20 @@ if ($resultado->num_rows > 0) {
         $fila .= "<tr>";
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['id'] . "</td>";
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['SISTEMAOPERATIVO'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['CPU'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['cache'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['memoria'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['almacenamiento'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['direccion'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['mac'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['ultimo_mantenimiento'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['proximo_mantenimiento'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['año_lanzamiento'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['fecha_compra'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['V_CPU'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['V_MEM'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['V_DISCO'] . "</td>";
+        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['V_FINAL'] . "</td>";
         $fila .= "</tr>";
 
         $fila .= "</tbody>";
