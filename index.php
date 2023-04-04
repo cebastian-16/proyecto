@@ -1,11 +1,30 @@
 <?php
 include("connection.php");
+
 $con = connection();
 
 
 $sql = "SELECT * FROM datos LIMIT 4";
 $query = mysqli_query($con, $sql);
 
+$sql = "SELECT `SISTEMAOPERATIVO`, count(`SISTEMAOPERATIVO`) CANTIDAD FROM `datos` GROUP by `SISTEMAOPERATIVO`";
+$resultado = mysqli_query($con, $sql);
+$datos = array();
+while ($fila = mysqli_fetch_assoc($resultado)) {
+    $datos[$fila['SISTEMAOPERATIVO']] = $fila['CANTIDAD'];
+}
+
+$sql = "SELECT `almacenamiento`, count(`almacenamiento`) CANTIDAD FROM `datos` GROUP by `almacenamiento`";
+$resultado = mysqli_query($con, $sql);
+$datos2 = array();
+while ($fila = mysqli_fetch_assoc($resultado)) {
+    $datos2[$fila['almacenamiento']] = $fila['CANTIDAD'];
+}
+
+
+
+//Cerrar la conexión a la base de datos
+mysqli_close($con);
 
 ?>
 
@@ -19,9 +38,11 @@ $query = mysqli_query($con, $sql);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="CSS/style.css" rel="stylesheet" href="librerias/bootstrap/css/bootstrap.css">
-    <title>Users CRUD</title>
+    <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <script>
     function confirmacion() {
@@ -33,6 +54,14 @@ $query = mysqli_query($con, $sql);
         }
 
     }
+
+    const toggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+toggle.addEventListener('click', () => {
+  body.classList.toggle('dark-theme');
+});
+
 </script>
 
 
@@ -55,23 +84,24 @@ $query = mysqli_query($con, $sql);
                     <a href="index1.php">
                         <h2>Graficas</h2>
                     </a>
+                   
                 </div>
             </div>
 
 
             <body>
                 <a href="exportar.php">
-                    <button type="button" class="btn btn-success"   style="background-color: #6264DF">Informe
+                    <button type="button" class="btn btn-success" style="background-color: #6264DF">Informe
                         Excel</button>
                 </a>
 
                 <form action="busqueda.php" method="post">
-                    <label for="query">Buscar: </label >
+                    <label for="query">Buscar: </label>
                     <input type="text" name="query" id="query">
-                    <input type="submit" value="Buscar" ></input>
-                    
+                    <input type="submit" value="Buscar"></input>
+
                 </form>
-   
+
                 <a href="cerrarsession.php" class="btn btn-outline-primary">
                     <span class="glyphicon glyphicon-off"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
@@ -100,9 +130,6 @@ $query = mysqli_query($con, $sql);
                 <th>Mac</th>
                 <th>Ultimo mantenimiento</th>
                 <th>Proximo mantenimiento</th>
-                <th>V_CPU</th>
-                <th>V_MEM</th>
-                <th>V_DISCO</th>
                 <th>V_FINAL </th>
                 <th></th>
                 <th></th>
@@ -141,15 +168,6 @@ $query = mysqli_query($con, $sql);
                         <?= $row['proximo_mantenimiento'] ?>
                     </th>
                     <th>
-                        <?= $row['V_CPU'] ?>
-                    </th>
-                    <th>
-                        <?= $row['V_MEM'] ?>
-                    </th>
-                    <th>
-                        <?= $row['V_DISCO'] ?>
-                    </th>
-                    <th>
                         <?= $row['V_FINAL'] ?>
 
                     </th>
@@ -165,13 +183,100 @@ $query = mysqli_query($con, $sql);
 </div>
 
 
+<div class="container">
+    <div class="row">
+        <div id="myChartContainer">
+            <h2 class="chartTitle">Sistemas Operativos</h2>
+            <canvas id="grafico" style=" height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+        </div>
+
+        <div id="myChartContainer2">
+            <h2 class="chartTitle">ALMACENAMIENTO</h2>
+            <canvas id="grafico2" style=" height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    var datos = <?php echo json_encode($datos); ?>;
+
+    var opciones = {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            animateRotate: true,
+            duration: 2000
+        }
+
+    };
+
+    var config = {
+        type: 'doughnut',
+        data: {
+            labels: Object.keys(datos),
+            datasets: [{
+                data: Object.values(datos),
+                backgroundColor: [
+                    '#ff6384',
+                    '#36a2eb',
+                    '#cc65fe',
+                    '#ffce56',
+                    '#2E31E5',
+                    '#E52E6E',
+                    '#19E21C',
+                    '#EA33BB'
+                ]
+            }]
+        },
+        options: opciones
+    };
+
+    var ctx = document.getElementById('grafico').getContext('2d');
+    new Chart(ctx, config);
+</script>
+
+<script>
+    var datos2 = <?php echo json_encode($datos2); ?>;
+
+    var opciones = {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            animateRotate: true,
+            duration: 2000
+        }
+
+    };
+
+    var config = {
+        type: 'bar',
+        data: {
+            labels: Object.keys(datos2),
+            datasets: [{
+                data: Object.values(datos2),
+                backgroundColor: [
+                    '#ff6384',
+                    '#36a2eb',
+
+                ]
+            }]
+        },
+        options: opciones
+    };
+
+    var ctx = document.getElementById('grafico2').getContext('2d');
+    new Chart(ctx, config);
+
+    // Estilo para centrar la gráfica horizontalmente
+    var canvas = document.getElementById("grafico2");
+</script>
+
+
+
+</div>
 
 </body>
 
 </html>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#cargaLineal').load('lineal.php');
-        $('#cargaBarras').load('barras.php');
-    });
-</script>

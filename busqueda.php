@@ -13,7 +13,7 @@ if ($mysqli->connect_error) {
 $query = isset($_POST['query']) ? $_POST['query'] : '';
 
 // Preparar la consulta SQL
-$sql = "SELECT * FROM datos WHERE id LIKE '%$query%' ";
+$sql = "SELECT * FROM datos WHERE SISTEMAOPERATIVO LIKE '%$query%' ";
 
 // Ejecutar la consulta SQL
 $resultado = $mysqli->query($sql);
@@ -25,7 +25,6 @@ if ($resultado->num_rows > 0) {
         $fila = "<table style='border-collapse: collapse'>";
         $fila .= "<thead  style='background-color: #f2f2f2'>";
         $fila .= "<tr>";
-        $fila .= "<th style='padding: 10px; border: 1px solid black'>id </th>";
         $fila .= "<th style='padding: 10px; border: 1px solid black'>SISTEMAOPERATIVO</th>";
         $fila .= "<th style='padding: 10px; border: 1px solid black'>CPU</th>";
         $fila .= "<th style='padding: 10px; border: 1px solid black'>cache</th>";
@@ -37,16 +36,12 @@ if ($resultado->num_rows > 0) {
         $fila .= "<th style='padding: 10px; border: 1px solid black'>proximo_mantenimiento</th>";
         $fila .= "<th style='padding: 10px; border: 1px solid black'>año_lanzamiento</th>";
         $fila .= "<th style='padding: 10px; border: 1px solid black'>fecha_compra</th>";
-        $fila .= "<th style='padding: 10px; border: 1px solid black'>V_CPU</th>";
-        $fila .= "<th style='padding: 10px; border: 1px solid black'>V_MEM</th>";
-        $fila .= "<th style='padding: 10px; border: 1px solid black'>V_DISCO</th>";
         $fila .= "<th style='padding: 10px; border: 1px solid black'>V_FINAL</th>";
         $fila .= "</tr>";
         $fila .= "</thead>";
         $fila .= "<tbody>";
 
         $fila .= "<tr>";
-        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['id'] . "</td>";
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['SISTEMAOPERATIVO'] . "</td>";
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['CPU'] . "</td>";
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['cache'] . "</td>";
@@ -58,9 +53,6 @@ if ($resultado->num_rows > 0) {
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['proximo_mantenimiento'] . "</td>";
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['año_lanzamiento'] . "</td>";
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['fecha_compra'] . "</td>";
-        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['V_CPU'] . "</td>";
-        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['V_MEM'] . "</td>";
-        $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['V_DISCO'] . "</td>";
         $fila .= "<td style='padding: 10px; border: 1px solid black'>" . $filas['V_FINAL'] . "</td>";
         $fila .= "</tr>";
 
