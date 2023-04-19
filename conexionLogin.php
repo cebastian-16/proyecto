@@ -5,7 +5,7 @@
 		public $servername = 'localhost';
 		public $database = "bodega";
 		public $username = "root";
-		public $password = "";
+		public $password = "123456";
 
 
 		function conexion(){

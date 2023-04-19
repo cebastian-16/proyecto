@@ -5,7 +5,7 @@ function connection()
 
     $host = "localhost";
     $user = "root";
-    $pass = "";
+    $pass = "123456";
 
     $bd = "bodega";
 

@@ -2,8 +2,7 @@
 <?php
 	include("connection.php");
 	$con = connection();
-	$sql="SELECT cache,memoria 
-			from datos order by cache";
+	$sql="SELECT `almacenamiento`, count(`almacenamiento`) CANTIDAD FROM `datos` GROUP by `almacenamiento`";
 	$result=mysqli_query($con,$sql);
 	$valoresY=array();//montos
 	$valoresX=array();//fechas
@@ -39,7 +38,7 @@
 	var trace1 = {
 		x: datosX,
 		y: datosY,
-		type: 'scatter'
+		type: 'bar'
 	};
 
 	var data = [trace1];

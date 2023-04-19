@@ -56,12 +56,11 @@ mysqli_close($con);
     }
 
     const toggle = document.getElementById('theme-toggle');
-const body = document.body;
+    const body = document.body;
 
-toggle.addEventListener('click', () => {
-  body.classList.toggle('dark-theme');
-});
-
+    toggle.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+    });
 </script>
 
 
@@ -84,17 +83,18 @@ toggle.addEventListener('click', () => {
                     <a href="index1.php">
                         <h2>Graficas</h2>
                     </a>
-                   
+                    
+                    <a href="exportar.php">
+                       <h2> Informe Excel</h2>
+                    </a>
+
                 </div>
             </div>
 
 
             <body>
-                <a href="exportar.php">
-                    <button type="button" class="btn btn-success" style="background-color: #6264DF">Informe
-                        Excel</button>
-                </a>
 
+                
                 <form action="busqueda.php" method="post">
                     <label for="query">Buscar: </label>
                     <input type="text" name="query" id="query">
@@ -102,10 +102,11 @@ toggle.addEventListener('click', () => {
 
                 </form>
 
-                <a href="cerrarsession.php" class="btn btn-outline-primary">
+                <a href="cerrarsession.php"  class="btn btn-outline-primary">
                     <span class="glyphicon glyphicon-off"></span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
-                        <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-box-arrow-left" viewBox="0 0 16 16" >
+                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
                     </svg>
                 </a>
 
@@ -183,7 +184,7 @@ toggle.addEventListener('click', () => {
 </div>
 
 
-<div class="container">
+<div class="d-flex justify-content-center">
     <div class="row">
         <div id="myChartContainer">
             <h2 class="chartTitle">Sistemas Operativos</h2>
@@ -207,7 +208,7 @@ toggle.addEventListener('click', () => {
         maintainAspectRatio: false,
         animation: {
             animateRotate: true,
-            duration: 2000
+            duration: 1000
         }
 
     };
@@ -225,8 +226,7 @@ toggle.addEventListener('click', () => {
                     '#ffce56',
                     '#2E31E5',
                     '#E52E6E',
-                    '#19E21C',
-                    '#EA33BB'
+                   
                 ]
             }]
         },
@@ -245,7 +245,14 @@ toggle.addEventListener('click', () => {
         maintainAspectRatio: false,
         animation: {
             animateRotate: true,
-            duration: 2000
+            duration: 1000
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
         }
 
     };
@@ -258,8 +265,7 @@ toggle.addEventListener('click', () => {
                 data: Object.values(datos2),
                 backgroundColor: [
                     '#ff6384',
-                    '#36a2eb',
-
+                    '#36a2eb'
                 ]
             }]
         },
@@ -268,9 +274,6 @@ toggle.addEventListener('click', () => {
 
     var ctx = document.getElementById('grafico2').getContext('2d');
     new Chart(ctx, config);
-
-    // Estilo para centrar la gráfica horizontalmente
-    var canvas = document.getElementById("grafico2");
 </script>
 
 

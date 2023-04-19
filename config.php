@@ -1,6 +1,6 @@
 <?php
 define('USER', 'root');
-define('PASSWORD', '');
+define('PASSWORD', '123456');
 define('HOST', 'localhost');
 define('DATABASE', 'bodega');
  
